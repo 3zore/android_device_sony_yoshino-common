@@ -2,11 +2,14 @@
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
-/dev/block/bootdevice/by-name/system       /system      ext4    ro,barrier=1                                                  wait
-/dev/block/bootdevice/by-name/vendor       /vendor      ext4    ro,barrier=1                                                  wait
+#/dev/block/bootdevice/by-name/system       /system      ext4    ro,barrier=1                                                  wait
+/dev/block/platform/soc/c0a4900.sdhci/mmcblk0p1    /system      ext4    ro,barrier=1                                                  wait
+#/dev/block/bootdevice/by-name/vendor       /vendor      ext4    ro,barrier=1                                                  wait
+/dev/block/platform/soc/c0a4900.sdhci/mmcblk0p2    /vendor      ext4    ro,barrier=1                                                  wait
 
 /dev/block/bootdevice/by-name/cache        /cache       ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,errors=panic wait,check,formattable
-/dev/block/bootdevice/by-name/userdata     /data        ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,discard,errors=panic wait,check,formattable,fileencryption=ice
+#/dev/block/bootdevice/by-name/userdata     /data        ext4    noatime,nosuid,nodev,barrier=1,data=ordered,noauto_da_alloc,discard,errors=panic wait,check,formattable,fileencryption=ice
+/dev/block/platform/soc/c0a4900.sdhci/mmcblk0p3					   /data        f2fs    rw,noatime,nosuid,nodev,discard,nobarrier,inline_xattr,inline_data	wait,check,formattable
 /dev/block/bootdevice/by-name/boot         /boot        emmc    defaults                                                      defaults
 /dev/block/bootdevice/by-name/FOTAKernel   /recovery    emmc    defaults                                                      defaults
 /dev/block/bootdevice/by-name/frp          /persistent  emmc    defaults                                                      defaults
@@ -18,6 +21,6 @@
 
 /dev/block/bootdevice/by-name/Qnovo        /qns         ext4    nosuid,nodev,noatime,noexec,barrier=1,discard                 wait,check,formattable,notrim
 
-/devices/soc/c0a4900.sdhci/mmc_host/mmc*                       auto         auto    nosuid,nodev                              voldmanaged=sdcard1:auto,encryptable=userdata
+#/devices/soc/c0a4900.sdhci/mmc_host/mmc*                       auto         auto    nosuid,nodev                              voldmanaged=sdcard1:auto,encryptable=userdata
 /devices/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb*   auto         auto    defaults                                  voldmanaged=usb:auto
 /dev/block/zram0                                               none         swap    defaults                                  zramsize=536870912,notrim
