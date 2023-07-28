@@ -17,7 +17,7 @@
 LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter yoshino,$(PRODUCT_PLATFORM)),)
-ifneq ($(filter lilac maple maple_dsds poplar poplar_canada poplar_dsds poplar_kddi, $(TARGET_DEVICE)),)
+ifneq ($(filter lilac lilac_dcm maple maple_dsds poplar poplar_canada poplar_dsds poplar_kddi, $(TARGET_DEVICE)),)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
 endif
